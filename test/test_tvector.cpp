@@ -1,33 +1,33 @@
 #include "tmatrix.h"  // Подключаем заголовочный файл с классом TDynamicVector
 #include <gtest.h>    // Подключаем библиотеку Google Test для модульного тестирования
 
-// Тест: создание вектора с положительным размером
+
 TEST(TDynamicVector, can_create_vector_with_positive_length)
 {
-    ASSERT_NO_THROW(TDynamicVector<int> v(5)); // Проверяем, что создание вектора размером 5 не вызывает исключений
+    ASSERT_NO_THROW(TDynamicVector<int> v(5));// создание вектора размером 5 не вызывает исключений
 }
 
-// Тест: нельзя создать слишком большой вектор
+
 TEST(TDynamicVector, cant_create_too_large_vector)
 {
-    ASSERT_ANY_THROW(TDynamicVector<int> v(MAX_VECTOR_SIZE + 1)); // Проверяем, что превышение максимального размера вызывает исключение
+    ASSERT_ANY_THROW(TDynamicVector<int> v(MAX_VECTOR_SIZE + 1)); //превышение максимального размера вызывает исключение
 }
 
-// Тест: создание вектора с отрицательным размером вызывает исключение
+
 TEST(TDynamicVector, throws_when_create_vector_with_negative_length)
 {
-    ASSERT_ANY_THROW(TDynamicVector<int> v(-5)); // Проверяем, что отрицательный размер вызывает исключение
+    ASSERT_ANY_THROW(TDynamicVector<int> v(-5)); //  отрицательный размер вызывает исключение
 }
 
-// Тест: можно создать копию вектора
+
 TEST(TDynamicVector, can_create_copied_vector)
 {
-    TDynamicVector<int> v(10); // Создаем исходный вектор размером 10
+    TDynamicVector<int> v(10); 
 
-    ASSERT_NO_THROW(TDynamicVector<int> v1(v)); // Проверяем, что копирование проходит без исключений
+    ASSERT_NO_THROW(TDynamicVector<int> v1(v)); // копирование проходит без исключений
 }
 
-// Тест: скопированный вектор равен исходному
+
 TEST(TDynamicVector, copied_vector_is_equal_to_source_one)
 {
     TDynamicVector<int> v(3);
@@ -39,36 +39,36 @@ TEST(TDynamicVector, copied_vector_is_equal_to_source_one)
     EXPECT_EQ(v, v1); // Проверяем, что векторы равны
 }
 
-// Тест: скопированный вектор имеет собственную память (глубокое копирование)
+// скопированный вектор имеет собственную память 
 TEST(TDynamicVector, copied_vector_has_its_own_memory)
 {
     TDynamicVector<int> v(3);
     v[0] = 1;
     v[1] = 2;
     v[2] = 3;
-    TDynamicVector<int> v1(v); // Копируем вектор
-    v1[0] = 10;               // Изменяем значение в копии
+    TDynamicVector<int> v1(v);
+    v1[0] = 10;              
 
     // Проверяем, что изменение в копии не повлияло на оригинал
-    EXPECT_NE(v[0], v1[0]); // Значения должны быть разными
-    EXPECT_EQ(v[0], 1);     // Оригинал не изменился
-    EXPECT_EQ(v1[0], 10);   // Копия изменилась
+    EXPECT_NE(v[0], v1[0]);
+    EXPECT_EQ(v[0], 1);    
+    EXPECT_EQ(v1[0], 10);   
 }
 
-// Тест: можно получить размер вектора
+//  можно получить размер вектора
 TEST(TDynamicVector, can_get_size)
 {
-    TDynamicVector<int> v(4); // Создаем вектор размером 4
-    EXPECT_EQ(4, v.size());   // Проверяем, что размер равен 4
+    TDynamicVector<int> v(4); 
+    EXPECT_EQ(4, v.size());  
 }
 
-// Тест: можно установить и получить элемент вектора
+// можно установить и получить элемент вектора
 TEST(TDynamicVector, can_set_and_get_element)
 {
-    TDynamicVector<int> v(4); // Создаем вектор размером 4
-    v[0] = 4;                 // Устанавливаем значение первого элемента
+    TDynamicVector<int> v(4); 
+    v[0] = 4;                
 
-    EXPECT_EQ(4, v[0]); // Проверяем, что значение установилось корректно
+    EXPECT_EQ(4, v[0]); 
 }
 
 // Тест: исключение при установке элемента с отрицательным индексом
